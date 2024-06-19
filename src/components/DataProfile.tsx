@@ -4,6 +4,8 @@ import EmojiDireccion from '../../public/Emoji Direccion.png'
 import EmojiEmail from '../../public/Emoji Email.png'
 import EmojiCumpleaños from '../../public/Emoji Cumpleaños.png'
 import EmojiGenero from '../../public/Genero.png'
+import EmojiGastoTotal from '../../public/EmojiGastoTotal.png'
+import EmojiVisitasTotales from '../../public/EmojiVisitasTotales.png'
 
 function DataProfile() {
     return (
@@ -65,7 +67,7 @@ function DataProfile() {
             <Card className="w-full max-w-xs py-4">
                 <CardHeader>
                     <div className="flex items-center gap-4">
-                        <Image src="" alt="Gasto Total" width={30} height={30} className="rounded-full" />
+                        <Image src={EmojiGastoTotal} alt="Gasto Total" width={30} height={30} className="rounded-full" />
                         <div>
                             <h1 className="text-lg font-bold">Gasto Total</h1>
                         </div>
@@ -93,7 +95,7 @@ function DataProfile() {
             <Card className="w-full max-w-xs py-4">
                 <CardHeader>
                     <div className="flex items-center gap-4">
-                        <Image src="" alt="Visitas Totales" width={30} height={30} className="rounded-full" />
+                        <Image src={EmojiVisitasTotales} alt="Visitas Totales" width={30} height={30} className="rounded-full" />
                         <div>
                             <h1 className="text-lg font-bold">Visitas Totales</h1>
                         </div>

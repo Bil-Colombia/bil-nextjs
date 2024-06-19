@@ -51,7 +51,7 @@ function SidebarDesktop({ sidebarItems, isOpen }: SidebarDesktopProps) {
             </Link>
           ))}
         </div>
-        <div className={`absolute left-0 bottom-3 w-full px-3 ${isOpen ? 'items-start' : 'flex flex-col items-center'}`}>
+        <section className={`absolute left-0 bottom-3 w-full px-3 ${isOpen ? 'items-start' : 'flex flex-col items-center'}`}>
           <Separator className='absolute -top-3 left-0 w-full' />
           <Popover>
             <PopoverTrigger asChild>
@@ -72,7 +72,7 @@ function SidebarDesktop({ sidebarItems, isOpen }: SidebarDesktopProps) {
                 </div>
               </Button>
             </PopoverTrigger>
-            <PopoverContent className='mb-2 w-56 p-3 rounded-[1rem]'>
+            <PopoverContent className={`mb-2 w-48 p-3 rounded-[1rem] ${isOpen ? '' :  'items-center w-16'}`}>
               <div className='space-y-1'>
                 <Link href="/settings">
                   <SidebarButton size="sm" icon={Settings} className='w-full'>
@@ -85,7 +85,7 @@ function SidebarDesktop({ sidebarItems, isOpen }: SidebarDesktopProps) {
               </div>
             </PopoverContent>
           </Popover>
-        </div>
+        </section>
       </div>
     </aside>
   )
