@@ -1,4 +1,4 @@
-import UserAuthForm from '@/components/user-auth-form'
+import UserAuthForm from '@/app/register/user/components/user-auth-form'
 import { Card } from '@/components/ui/card'
 
 function RegisterPage() {

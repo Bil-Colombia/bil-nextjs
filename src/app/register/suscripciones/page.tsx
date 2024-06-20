@@ -1,4 +1,4 @@
-import FetchDjango from '@/components/GetSuscripciones'
+import FetchDjango from '@/app/register/suscripciones/components/GetSuscripciones'
 import { CardTitle } from '@/components/ui/card'
 import React from 'react'
 

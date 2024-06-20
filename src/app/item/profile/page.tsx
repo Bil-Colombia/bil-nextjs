@@ -1,4 +1,4 @@
-import { EditProfile } from '@/components/EditProfile'
+import { EditProfile } from '@/app/item/profile/components/EditProfile'
 
 function ItemPage() {
   return (

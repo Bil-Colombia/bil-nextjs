@@ -14,9 +14,9 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useUserAuth } from '@/context/UserAuthContext'
-import { Icons } from './Icons'
+import { Icons } from '@/components/Icons'
 import {useRouter} from 'next/navigation'
-import { AliadoSelect } from './AliadoSelect'
+import { AliadoSelect } from '@/app/register/empresa/components/componentsRegisterEmpresaForm/AliadoSelect'
 
 type Inputs = {
     razon: string

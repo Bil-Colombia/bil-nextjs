@@ -13,18 +13,18 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-} from "./ui/form"
+} from "@/components/ui/form"
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "./ui/select"
-import { Textarea } from "./ui/textarea"
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 const profileFormSchema = z.object({
     username: z

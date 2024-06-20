@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown } from "lucide-react"
-import EmojiPDF from '../../../public/PDF.png'
+import EmojiPDF from '../../../../public/PDF.png'
 
 import { Button } from "@/components/ui/button"
 
