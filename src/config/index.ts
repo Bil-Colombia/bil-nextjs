@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const envVars = z.object({
   NEXT_PUBLIC_API_BACKEND_WEB_DJANGO: z.string().url(),
+  NEXT_PUBLIC_USERS: z.string().url(),
 });
 
 envVars.parse(process.env);

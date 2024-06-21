@@ -1,6 +1,6 @@
-import { AvatarDemo } from "./Avatar"
-import CardsProfile from "./CardsProfile"
-import { CardHeader, CardTitle } from "./ui/card"
+import { AvatarDemo } from "@/components/Avatar"
+import CardsProfile from "@/components/CardsProfile"
+import { CardHeader, CardTitle } from "@/components/ui/card"
 
 function ProfilePage() {
     return (
