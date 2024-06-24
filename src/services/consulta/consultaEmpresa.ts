@@ -26,11 +26,10 @@ export const consultarApi = createApi({
         MEN_ERRO: string;
       }) => response.BODY.empresa,
     }),
-    getNit: builder.query<EmpresaResponse, { nit: string }>({
-      query: (body) => ({
-        url: "nit",
-        method: 'POST',
-        body: JSON.stringify(body),
+    getNit: builder.query<EmpresaResponse, number>({
+      query: (nit) => ({
+        url: `nit?nit=${nit}`,  // Adjust the URL endpoint and parameter as per your API route
+        method: 'GET',
       }),
       transformResponse: (response: {
         BODY: { empresa: EmpresaResponse };

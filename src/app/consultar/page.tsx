@@ -3,8 +3,7 @@ import ConsultarEmpresa from './components/ConsultarEmpresa';
 
 function ConsultarPage() {
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-2xl py-2 font-semibold">Consulta tu empresa</h1>
+    <div className="flex flex-col items-center justify-center" style={{marginTop: '100px'}}>
       <div className="mt-4">
         <ConsultarEmpresa />
       </div>
