@@ -1,12 +1,15 @@
 'use client'
 
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { setToken } from '@/lib/features/auth/authSlice'
+import { useState } from 'react'
 
 type Inputs = {
   email: string
@@ -17,6 +20,9 @@ function LoginForm() {
 
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
   const router = useRouter()
+  const dispatch = useDispatch()
+  const { data: session } = useSession()
+  const [loginError, setLoginError] = useState<string | null>(null)
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const result = await signIn("credentials", {
@@ -25,11 +31,16 @@ function LoginForm() {
       password: data.password
     })
 
-    if(result?.ok) {
+    if (result?.ok) {
+      const token = session?.user?.jwt
+      dispatch(setToken(token))
       router.push('/client')
     }
     else {
-      console.error("Login failed");
+      setLoginError(result?.error || 'Login Failed')
+      setTimeout(() => {
+        setLoginError(null)
+      }, 5000)
     }
   };
 
@@ -40,6 +51,7 @@ function LoginForm() {
     <div className='flex justify-center'>
       <Card className="p-4 max-w-md w-full">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          {loginError && <div className='text-red-600'>{loginError}</div>}
           <div>
             <Label htmlFor="email" className="block text-sm font-medium">
               Email

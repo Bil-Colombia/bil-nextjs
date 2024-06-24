@@ -8,7 +8,7 @@ import { selectIsOpen } from '@/lib/features/sidebar/sidebarSlice'
 
 const sidebarItems: SidebarItems = {
     links: [
-        { label: "Clientes", href: "/", icon: Users },
+        { label: "Clientes", href: "/client", icon: Users },
         { label: "Dashboard", href: "/dashboard", icon: BarChartBigIcon },
     ]
 }

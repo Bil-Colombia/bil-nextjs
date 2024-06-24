@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { SuscripcionApi } from "@/services/suscripcion/suscripcionApi";
 import { consultarApi } from "@/services/consulta/consultaEmpresa";
-import { AuthenticationApi } from "@/services/login/loginAuthentication";
+import { AuthenticationApi } from "@/services/login/login";
 import sidebarReducer from "@/lib/features/sidebar/sidebarSlice";
 import userAuthReducer from "@/lib/features/userAuth/userAuthSlice";
 import formReducer from "@/lib/features/form/formSlice";
