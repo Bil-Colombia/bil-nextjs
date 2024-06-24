@@ -10,8 +10,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     if (!storeRef.current) {
         // Create the store instance the first time this renders
         storeRef.current = makeStore()
-
-        
     }
 
     return (

@@ -8,12 +8,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toggleSidebar, selectPageTitle, setPageTitle } from '@/lib/features/sidebar/sidebarSlice'
 import type { AppDispatch, RootState } from '@/lib/store/store'
 
-const pageNames: { [key: string]: string } = {
-    "/": "Clientes",
-    "/dashboard": "Dashboard",
-    "/register/user": "Usuario",
-    "/register/empresa": "Empresa",
-    "/register/suscripciones": "Suscripciones"
+function formatPageTitle(pathname: string): string {
+    if (pathname === '/') {
+        return 'Login';
+    }
+    const formatted = pathname.split('/').filter(Boolean).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    return formatted || '';
 }
 
 function Navbar() {
@@ -28,7 +28,8 @@ function Navbar() {
     }
 
     useEffect(() => {
-        dispatch(setPageTitle(pageNames[pathname] || "Página"))
+        const formattedTitle = formatPageTitle(pathname);
+        dispatch(setPageTitle(formattedTitle))
     }, [dispatch, pathname])
 
 

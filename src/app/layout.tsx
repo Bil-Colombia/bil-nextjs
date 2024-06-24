@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
-import 'react-tooltip/dist/react-tooltip.css'
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Sidebar from "@/components/Sidebar";
 import { Toaster } from "@/components/ui/toaster"
-import { SidebarProvider } from "@/context/SidebarContext";
 import MainContent from "@/components/MainContent";
-import { UserAuthProvider } from "@/context/UserAuthContext";
 import '@/config/index'
 import { StoreProvider as NextReduxProvider } from "./StoreProvider";
+import { SessionProviders as NextAuthProvider } from './SessionProvider'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -41,15 +39,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
+          <NextAuthProvider>
             <NextReduxProvider>
-              <UserAuthProvider>
-                <Sidebar />
-                <MainContent>{children}</MainContent>
-                <Toaster />
-              </UserAuthProvider>
+              <Sidebar />
+              <MainContent>{children}</MainContent>
+              <Toaster />
             </NextReduxProvider>
-          </SidebarProvider>
+          </NextAuthProvider>
         </ThemeProvider>
       </body>
     </html>

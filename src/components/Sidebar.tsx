@@ -3,7 +3,8 @@
 import { BarChartBigIcon, User, Users } from "lucide-react"
 import SidebarDesktop from "./SidebarDesktop"
 import { SidebarItems } from "@/types"
-import { useSidebar } from "@/context/SidebarContext"
+import { useSelector } from 'react-redux'
+import { selectIsOpen } from '@/lib/features/sidebar/sidebarSlice'
 
 const sidebarItems: SidebarItems = {
     links: [
@@ -14,7 +15,7 @@ const sidebarItems: SidebarItems = {
 
 function Sidebar() {
 
-    const { isOpen } = useSidebar()
+    const isOpen = useSelector(selectIsOpen)
 
     return (
         <SidebarDesktop sidebarItems={sidebarItems} isOpen={isOpen} />

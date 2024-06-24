@@ -11,6 +11,7 @@ import { LogOut, MoreHorizontal, Settings } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import VercelLogo from '../app/favicon.ico'
+import { signOut } from 'next-auth/react'
 
 interface SidebarDesktopProps {
   sidebarItems: SidebarItems,
@@ -45,6 +46,8 @@ function SidebarDesktop({ sidebarItems, isOpen }: SidebarDesktopProps) {
                 variant={pathname === link.href ? 'secondary' : 'ghost'}
                 icon={link.icon}
                 className='w-full'
+                isOpen={isOpen}
+                label={link.label}
               >
                 {link.label}
               </SidebarButton>
@@ -75,11 +78,24 @@ function SidebarDesktop({ sidebarItems, isOpen }: SidebarDesktopProps) {
             <PopoverContent className={`mb-2 w-48 p-3 rounded-[1rem] ${isOpen ? '' :  'items-center w-16'}`}>
               <div className='space-y-1'>
                 <Link href="/settings">
-                  <SidebarButton size="sm" icon={Settings} className='w-full'>
+                  <SidebarButton 
+                    size="sm" 
+                    icon={Settings} 
+                    className='w-full'
+                    isOpen={isOpen}
+                    label='Account Settings'
+                  >
                     Account Settings
                   </SidebarButton>
                 </Link>
-                <SidebarButton size="sm" icon={LogOut} className='w-full'>
+                <SidebarButton 
+                  size="sm" 
+                  icon={LogOut} 
+                  className='w-full'
+                  isOpen={isOpen}
+                  label='Log Out'
+                  onClick={() => signOut()}
+                >
                   Log Out
                 </SidebarButton>
               </div>
