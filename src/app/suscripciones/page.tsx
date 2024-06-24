@@ -1,6 +1,7 @@
-import FetchDjango from '@/app/register/suscripciones/components/GetSuscripciones'
+import GetSuscripLocal from '@/app/suscripciones/components/GetSuscripciones'
 import { CardTitle } from '@/components/ui/card'
 import React from 'react'
+import GetSuscriCookie from './components/GetSuscripCookie'
 
 function SuscripcionesPage() {
     return (
@@ -10,7 +11,8 @@ function SuscripcionesPage() {
                     Escoja una Suscripcion o plan
                 </CardTitle>
 
-                <FetchDjango />
+                {/* <GetSuscripLocal /> */}
+                <GetSuscriCookie />
             </div>
         </>
     )

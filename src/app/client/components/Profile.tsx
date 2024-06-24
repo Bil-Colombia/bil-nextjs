@@ -1,15 +1,15 @@
+"use client"
 import { AvatarDemo } from "@/components/Avatar"
 import CardsProfile from "@/components/CardsProfile"
-import { CardHeader, CardTitle } from "@/components/ui/card"
+import { CardTitle } from "@/components/ui/card"
 
 function ProfilePage() {
+
     return (
         <div className="p-2">
             <div className="flex flex-col items-center">
                 <AvatarDemo />
-                <CardTitle className="py-2 text-center">
-                    <h1>Camila Ortiz</h1>
-                </CardTitle>
+                <CardTitle className="py-2 text-center">Camila Ortiz</CardTitle>
                 <section className="py-2 text-center">
                     <p className="text-lg text-slate-700">+57 300-233-5202</p>
                 </section>
