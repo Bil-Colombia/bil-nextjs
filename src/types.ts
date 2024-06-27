@@ -35,6 +35,53 @@ export interface EmpresaResponse {
 }
 
 export interface Usuario {
-  email: string,
-  password: string
+  id_fact: number;
+  fecha_expedicion: string;
+  for_pago: number;
+  nom_sucu: string;
+  valor: number;
+  nomb_comp: string;
+}
+
+export interface Cliente {
+  celular: number;
+  fec_nac: string;
+  id_user: number;
+  cor_elec: string;
+  direccion: string;
+  nomb_comp: string;
+  nombre_genero: string;
+}
+
+export interface Empresa {
+  visitas: number;
+  gasto_total: number;
+  gasto_maximo: number;
+  gasto_minimo: number;
+  cliente_desde: string;
+  ultima_visita: string;
+  gasto_promedio: number;
+}
+
+export interface Producto {
+  fact_id: number;
+  user_id: number;
+  nom_prod: string;
+  nomb_comp: string;
+  id_det_fact: number;
+}
+
+export interface Sucursal {
+  nombre: string;
+  id_trac: number;
+  user_id: number;
+  direccion: string;
+  sucursal_id: number;
+}
+
+export interface Data {
+  cliente: Cliente[];
+  empresa: Empresa[];
+  producto: Producto[];
+  sucursal: Sucursal[];
 }
