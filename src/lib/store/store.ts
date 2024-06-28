@@ -12,6 +12,7 @@ import formReducer from "@/lib/features/form/formSlice";
 import suscripcionCookieSlice from "@/lib/features/suscripcion/suscripcionCookieSlice";
 import authReducer from "@/lib/features/auth/authSlice";
 import apiReducer from "@/lib/features/api/apiSlice";
+import paginationReducer from "@/lib/features/pagination/paginationSlice";
 import { clientAPI } from "@/services/client/clientAPI";
 import { empresaAPI } from "@/services/empresa/empresa";
 import { clienteApi } from "@/services/cliente/cliente";
