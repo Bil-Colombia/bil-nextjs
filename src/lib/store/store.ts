@@ -10,6 +10,9 @@ import formReducer from "@/lib/features/form/formSlice";
 import suscripcionCookieSlice from "@/lib/features/suscripcion/suscripcionCookieSlice";
 import authReducer from "@/lib/features/auth/authSlice";
 import apiReducer from "@/lib/features/api/apiSlice";
+import { clientAPI } from "@/services/client/clientAPI";
+import { empresaAPI } from "@/services/empresa/empresa";
+import { clienteApi } from "@/services/cliente/cliente";
 
 export const makeStore = () => {
   return configureStore({
@@ -24,13 +27,19 @@ export const makeStore = () => {
       [SuscripcionApi.reducerPath]: SuscripcionApi.reducer,
       [consultarApi.reducerPath]: consultarApi.reducer,
       [AuthenticationApi.reducerPath]: AuthenticationApi.reducer,
+      [clientAPI.reducerPath]: clientAPI.reducer,
+      [empresaAPI.reducerPath]: empresaAPI.reducer,
+      [clienteApi.reducerPath]: clienteApi.reducer,
     },
 
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(
         SuscripcionApi.middleware,
         consultarApi.middleware,
-        AuthenticationApi.middleware
+        AuthenticationApi.middleware,
+        clientAPI.middleware,
+        empresaAPI.middleware,
+        clienteApi.middleware
       ),
   });
 };

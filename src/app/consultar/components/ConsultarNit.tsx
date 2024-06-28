@@ -22,6 +22,11 @@ function ConsultaNit() {
     const [data, setData] = useState<any>(null);
     const router = useRouter()
 
+    const suscripcion = localStorage.getItem('selectedSuscripcion');
+    if (suscripcion == undefined){
+      router.push('/suscripciones');
+    }
+
     const onSubmit = async (formData: FormValues) => {
         const { nit } = formData;
         setIsLoading(true);
@@ -51,6 +56,9 @@ function ConsultaNit() {
 
             if(data['BODY'].hasOwnProperty('empresa')){
                 localStorage.setItem('empresa', JSON.stringify(data['BODY'].empresa));
+            }
+            else{
+                localStorage.setItem('nit', nit);
             }
             router.push('/register/empresa');
         } catch (error) {
