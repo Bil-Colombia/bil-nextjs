@@ -16,6 +16,7 @@ const sidebarItems: SidebarItems = {
 function Sidebar() {
 
     const isOpen = useSelector(selectIsOpen)
+    console.log("Sidebar isOpen state:", isOpen)
 
     return (
         <SidebarDesktop sidebarItems={sidebarItems} isOpen={isOpen} />

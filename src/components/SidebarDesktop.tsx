@@ -21,6 +21,7 @@ interface SidebarDesktopProps {
 function SidebarDesktop({ sidebarItems, isOpen }: SidebarDesktopProps) {
 
   const pathname = usePathname()
+  console.log("SidebarDesktop isOpen state:", isOpen);
 
   return (
     <aside className={`h-screen fixed left-0 top-0 z-40 border-r transition-width duration-300 ${isOpen ? 'w-[200px]' : 'w-20'}`}>

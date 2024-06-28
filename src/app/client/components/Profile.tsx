@@ -14,15 +14,15 @@ interface ProfilePageProps {
 function ProfilePage({ cliente, empresa, producto, sucursal }: ProfilePageProps) {
 
     return (
-        <div className="p-2">
+        <div className="p-4 w-full">
             <div className="flex flex-col items-center">
                 <AvatarDemo />
-                <CardTitle className="py-2 text-center">{cliente?.nomb_comp}</CardTitle>
+                <CardTitle className="py-2 text-center text-xl font-bold">{cliente?.nomb_comp}</CardTitle>
                 <section className="py-2 text-center">
                     <p className="text-lg text-slate-700">{cliente?.celular}</p>
                 </section>
-                <div className="p-2 w-80">
-                    <CardsProfile cliente={cliente} empresa={empresa} producto={producto} sucursal={sucursal}/>
+                <div className="p-2 w-full">
+                    <CardsProfile cliente={cliente} empresa={empresa} producto={producto} sucursal={sucursal} />
                 </div>
             </div>
         </div>

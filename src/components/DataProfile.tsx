@@ -1,11 +1,9 @@
 import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
+import { Card, CardHeader, CardTitle } from "./ui/card"
 import EmojiDireccion from '../../public/Emoji Direccion.png'
 import EmojiVisitas from '../../public/Emoji Visitas.png'
 import EmojiProducto from '../../public/Emoji Producto.png'
 import EmojiGenero from '../../public/Genero.png'
-import EmojiGastoTotal from '../../public/EmojiGastoTotal.png'
-import EmojiVisitasTotales from '../../public/EmojiVisitasTotales.png'
 import { Cliente, Empresa, Producto, Sucursal } from "@/types"
 
 interface DataProfileProps {
@@ -16,17 +14,6 @@ interface DataProfileProps {
 }
 
 function DataProfile({ cliente, empresa, producto, sucursal }: DataProfileProps) {
-
-    const numberFormat = new Intl.NumberFormat('es-CO', {
-        style: 'currency',
-        currency: 'COP'
-    })
-
-    const dateFormat = new Intl.DateTimeFormat('es-CO', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    })
 
     return (
         <>
@@ -86,77 +73,6 @@ function DataProfile({ cliente, empresa, producto, sucursal }: DataProfileProps)
                         </div>
                     </CardTitle>
                 </CardHeader>
-            </Card>
-
-            {/* Agregar dos Cards más que son otra información */}
-            <Card className="w-full max-w-xs py-4">
-                <CardHeader>
-                    <div className="flex items-center gap-4">
-                        <Image src={EmojiGastoTotal} alt="Gasto Total" width={30} height={30} className="rounded-full" />
-                        <div>
-                            <h1 className="text-lg font-bold">Gasto Total</h1>
-                        </div>
-                        {empresa?.gasto_total !== undefined && (
-                            <p className={`text-lg ml-auto font-semibold ${empresa.gasto_total >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                                {empresa?.gasto_total >= 0 ? numberFormat.format(empresa.gasto_total) : `-${numberFormat.format(Math.abs(empresa.gasto_total))}`}
-                            </p>
-                        )}
-                    </div>
-                </CardHeader>
-                <CardContent>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex justify-between">
-                            <p className="text-sm text-slate-600">Gasto Máximo</p>
-                            {empresa?.gasto_maximo !== undefined && (
-                                <p className="text-sm text-slate-600">
-                                    {empresa?.gasto_maximo >= 0 ? numberFormat.format(empresa.gasto_maximo) : `-${numberFormat.format(Math.abs(empresa.gasto_maximo))}`}
-                                </p>
-                            )}
-                        </div>
-                        <div className="flex justify-between">
-                            <p className="text-sm text-slate-600">Gasto Promedio</p>
-                            {empresa?.gasto_promedio !== undefined && (
-                                <p className="text-sm text-slate-600">
-                                    {empresa?.gasto_promedio >= 0 ? numberFormat.format(empresa.gasto_promedio) : `-${numberFormat.format(Math.abs(empresa.gasto_promedio))}`}
-                                </p>
-                            )}
-                        </div>
-                        <div className="flex justify-between">
-                            <p className="text-sm text-slate-600">Gasto Mínimo</p>
-                            {empresa?.gasto_minimo !== undefined && (
-                                <p className="text-sm text-slate-600">
-                                    {empresa?.gasto_minimo >= 0 ? numberFormat.format(empresa.gasto_minimo) : `-${numberFormat.format(Math.abs(empresa.gasto_minimo))}`}
-                                </p>
-                            )}
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-
-            <Card className="w-full max-w-xs py-4">
-                <CardHeader>
-                    <div className="flex items-center gap-4">
-                        <Image src={EmojiVisitasTotales} alt="Visitas Totales" width={30} height={30} className="rounded-full" />
-                        <div>
-                            <h1 className="text-lg font-bold">Visitas Totales</h1>
-                        </div>
-                        <p className="text-lg text-green-600 ml-auto">{empresa?.visitas}</p>
-                    </div>
-                </CardHeader>
-                <CardContent>
-                    <div className="flex flex-col gap-2">
-                        <div className="flex justify-between">
-                            <p className="text-sm text-slate-600">Última Visita</p>
-                            <p className="text-sm text-slate-600">
-                                {empresa?.ultima_visita ? dateFormat.format(new Date(empresa.ultima_visita)) : ''}
-                            </p>
-                        </div>
-                        <div className="flex justify-between">
-                            <p className="text-sm text-slate-600">Recurrencia</p>
-                            <p className="text-sm text-slate-600">3.7 veces/mes</p>
-                        </div>
-                    </div>
-                </CardContent>
             </Card>
         </>
     )

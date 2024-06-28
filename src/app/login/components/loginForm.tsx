@@ -33,7 +33,7 @@ function LoginForm() {
 
     if (result?.ok) {
       const token = session?.user?.jwt
-      dispatch(setToken(token))
+      dispatch(setToken(token || ""))
       router.push('/client')
     }
     else {

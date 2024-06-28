@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import DemoPage from '@/app/payments/page'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/lib/store/store'
+import StatsCards from './StatsCards'
 
 function ClientPage() {
 
@@ -27,12 +28,17 @@ function ClientPage() {
 
     return (
         <div className='flex min-h-screen flex-col'>
-            <div className="p-8 flex flex-col lg:flex-row gap-8">
-                <Card className="flex-1 p-2 rounded-lg">
+            <div className="p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-2 flex flex-col gap-8">
+                    <div className="flex-1 rounded-lg">
+                        <Cards cliente={cliente} empresa={empresa} producto={producto} sucursal={sucursal} />
+                    </div>
+                    <div className="flex-1 rounded-lg">
+                        <StatsCards empresa={empresa} />
+                    </div>
+                </div>
+                <Card className="lg:col-span-1 p-4 rounded-lg">
                     <ProfilePage cliente={cliente} empresa={empresa} producto={producto} sucursal={sucursal} />
-                </Card>
-                <Card className="flex flex-col items-center p-4 rounded-lg w-full lg:w-[650px]">
-                    <Cards cliente={cliente} empresa={empresa} producto={producto} sucursal={sucursal}/>
                 </Card>
             </div>
             <div className="p-1">

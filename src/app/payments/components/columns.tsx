@@ -3,10 +3,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import EmojiPDF from '../../../../public/PDF.png';
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
-
-import Image from "next/image";
 
 export type Factura = {
     id_fact: number;

@@ -16,7 +16,7 @@ export const sidebarSlice = createSlice({
   initialState,
   reducers: {
     toggleSidebar: (state) => {
-      state.open != state.open;
+      state.open = !state.open;
     },
     setPageTitle: (state, action: PayloadAction<string>) => {
       state.pageTitle = action.payload;

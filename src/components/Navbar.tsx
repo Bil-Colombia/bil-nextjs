@@ -24,11 +24,13 @@ function Navbar() {
     const pathname = usePathname()
 
     const handleToggle = () => {
+        console.log("Navbar toggle button clicked");
         dispatch(toggleSidebar())
     }
 
     useEffect(() => {
         const formattedTitle = formatPageTitle(pathname);
+        console.log(formattedTitle)
         dispatch(setPageTitle(formattedTitle))
     }, [dispatch, pathname])
 

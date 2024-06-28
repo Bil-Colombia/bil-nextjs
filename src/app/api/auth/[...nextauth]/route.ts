@@ -41,6 +41,15 @@ const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+    maxAge: 60 * 60,
+    updateAge: 60 * 60,
+    generateSessionToken: () => {
+      return require('crypto').randomBytes(32).toString('hex')
+    },
+
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
