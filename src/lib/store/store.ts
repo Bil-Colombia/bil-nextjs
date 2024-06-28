@@ -13,6 +13,9 @@ import suscripcionCookieSlice from "@/lib/features/suscripcion/suscripcionCookie
 import authReducer from "@/lib/features/auth/authSlice";
 import apiReducer from "@/lib/features/api/apiSlice";
 import paginationReducer from "@/lib/features/pagination/paginationSlice";
+import { clientAPI } from "@/services/client/clientAPI";
+import { empresaAPI } from "@/services/empresa/empresa";
+import { clienteApi } from "@/services/cliente/cliente";
 
 export const makeStore = () => {
   return configureStore({
@@ -28,6 +31,9 @@ export const makeStore = () => {
       [SuscripcionApi.reducerPath]: SuscripcionApi.reducer,
       [consultarApi.reducerPath]: consultarApi.reducer,
       [AuthenticationApi.reducerPath]: AuthenticationApi.reducer,
+      [clientAPI.reducerPath]: clientAPI.reducer,
+      [empresaAPI.reducerPath]: empresaAPI.reducer,
+      [clienteApi.reducerPath]: clienteApi.reducer,
       [DataTableApi.reducerPath]: DataTableApi.reducer,
       [DetailsUserApi.reducerPath]: DetailsUserApi.reducer,
     },
@@ -37,6 +43,9 @@ export const makeStore = () => {
         SuscripcionApi.middleware,
         consultarApi.middleware,
         AuthenticationApi.middleware,
+        clientAPI.middleware,
+        empresaAPI.middleware,
+        clienteApi.middleware,
         DataTableApi.middleware,
         DetailsUserApi.middleware
       ),
