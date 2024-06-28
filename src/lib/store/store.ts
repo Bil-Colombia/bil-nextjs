@@ -3,6 +3,8 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { SuscripcionApi } from "@/services/suscripcion/suscripcionApi";
 import { consultarApi } from "@/services/consulta/consultaEmpresa";
 import { AuthenticationApi } from "@/services/login/login";
+import { dataTable as DataTableApi } from "@/services/datatable/dataTable";
+import { DetailsUser as DetailsUserApi } from "@/services/details/detailsUser";
 import sidebarReducer from "@/lib/features/sidebar/sidebarSlice";
 import userAuthReducer from "@/lib/features/userAuth/userAuthSlice";
 import formReducer from "@/lib/features/form/formSlice";
@@ -24,12 +26,15 @@ export const makeStore = () => {
       suscripcion: suscripcionCookieSlice,
       auth: authReducer,
       api: apiReducer,
+      pagination: paginationReducer,
       [SuscripcionApi.reducerPath]: SuscripcionApi.reducer,
       [consultarApi.reducerPath]: consultarApi.reducer,
       [AuthenticationApi.reducerPath]: AuthenticationApi.reducer,
       [clientAPI.reducerPath]: clientAPI.reducer,
       [empresaAPI.reducerPath]: empresaAPI.reducer,
       [clienteApi.reducerPath]: clienteApi.reducer,
+      [DataTableApi.reducerPath]: DataTableApi.reducer,
+      [DetailsUserApi.reducerPath]: DetailsUserApi.reducer,
     },
 
     middleware: (getDefaultMiddleware) =>
@@ -39,7 +44,9 @@ export const makeStore = () => {
         AuthenticationApi.middleware,
         clientAPI.middleware,
         empresaAPI.middleware,
-        clienteApi.middleware
+        clienteApi.middleware,
+        DataTableApi.middleware,
+        DetailsUserApi.middleware
       ),
   });
 };

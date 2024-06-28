@@ -23,6 +23,9 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
+import { useDispatch, useSelector } from 'react-redux'
+import { setFilter, setSelectedUser } from '@/lib/features/pagination/paginationSlice'
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -31,20 +34,32 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Factura } from "./columns"
+import { AppDispatch, RootState } from "@/lib/store/store"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
+    page: number
+    setPage: (page: number) => void
+    totalPages: number
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
+    page,
+    setPage,
+    totalPages
 }: DataTableProps<TData, TValue>) {
+
+    const dispatch = useDispatch<AppDispatch>()
 
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+    const filters = useSelector((state: RootState) => state.pagination.filter)
+
 
     const table = useReactTable({
         data,
@@ -68,15 +83,25 @@ export function DataTable<TData, TValue>({
         },
     })
 
+
+    const handleRowClick = (row: TData) => {
+        const factura = row as unknown as Factura;
+        if (factura.id_user !== undefined && factura.id_user !== null && factura.empresa_id !== undefined && factura.empresa_id !== null) {
+            dispatch(setSelectedUser({ userId: factura.id_user, empresaId: factura.empresa_id }))
+        }
+    }
+
+    const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(setFilter(event.target.value))
+    }
+
     return (
         <div>
             <div className="flex items-center py-4">
-                <Input
+                <Input 
                     placeholder="Filter Cliente..."
-                    value={(table.getColumn("cliente")?.getFilterValue() as string) ?? ""}
-                    onChange={(event) =>
-                        table.getColumn("cliente")?.setFilterValue(event.target.value)
-                    }
+                    value={filters}
+                    onChange={handleFilterChange}
                     className="max-w-sm"
                 />
                 <DropdownMenu>
@@ -134,6 +159,8 @@ export function DataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
+                                    onClick={() => handleRowClick(row.original)}
+                                    className="cursor-pointer"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id}>
@@ -152,24 +179,28 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-end space-x-2 py-4">
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    Previous
-                </Button>
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    Next
-                </Button>
-            </div>
+            {totalPages > 1 && (
+                <div className="flex items-center justify-end space-x-2 py-4">
+                    {page > 1 && (
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setPage(page - 1)}
+                        >
+                            Previous
+                        </Button>
+                    )}
+                    {page < totalPages && (
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setPage(page + 1)}
+                        >
+                            Next
+                        </Button>
+                    )}
+                </div>
+            )}
         </div>
     )
 }
